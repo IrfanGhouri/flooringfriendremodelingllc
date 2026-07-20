@@ -768,24 +768,35 @@ document.addEventListener('DOMContentLoaded', () => {
       activeSlideIdx = targetIdx;
 
       // Update slide visibility
-      testimonialSlides.forEach((slide, idx) => {
-        if (idx === targetIdx) {
-          slide.classList.remove('hidden');
-          gsap.fromTo(slide, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
-        } else {
-          slide.classList.add('hidden');
-          gsap.set(slide, { opacity: 0 });
-        }
-      });
+      const isHome4 = !!document.getElementById('mobile-toggle-4');
+      const track4 = document.getElementById('testimonial-track');
+
+      if (isHome4 && track4) {
+        track4.style.transform = `translateX(-${targetIdx * 100}%)`;
+      } else {
+        testimonialSlides.forEach((slide, idx) => {
+          if (idx === targetIdx) {
+            slide.classList.remove('hidden');
+            gsap.fromTo(slide, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
+          } else {
+            slide.classList.add('hidden');
+            gsap.set(slide, { opacity: 0 });
+          }
+        });
+      }
+
+      // Determine active theme color variables dynamically
+      const activeColor = isHome4 ? 'bg-japandi-clay' : 'bg-minimal-sage';
+      const inactiveColor = isHome4 ? 'bg-japandi-sand' : 'bg-minimal-sand';
 
       // Update active dot visual classes
       testimonialDots.forEach((dot, idx) => {
         if (idx === targetIdx) {
-          dot.classList.add('bg-minimal-sage', 'w-4');
-          dot.classList.remove('bg-minimal-sand', 'w-2');
+          dot.classList.add(activeColor, 'w-4');
+          dot.classList.remove(inactiveColor, 'w-2');
         } else {
-          dot.classList.remove('bg-minimal-sage', 'w-4');
-          dot.classList.add('bg-minimal-sand', 'w-2');
+          dot.classList.remove(activeColor, 'w-4');
+          dot.classList.add(inactiveColor, 'w-2');
         }
       });
     };
@@ -812,8 +823,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initial dot configurations
-    testimonialDots[0].classList.add('w-4');
-    testimonialDots[0].classList.remove('w-2');
+    const isHome4 = !!document.getElementById('mobile-toggle-4');
+    const activeColor = isHome4 ? 'bg-japandi-clay' : 'bg-minimal-sage';
+    const inactiveColor = isHome4 ? 'bg-japandi-sand' : 'bg-minimal-sand';
+
+    testimonialDots[0].classList.add(activeColor, 'w-4');
+    testimonialDots[0].classList.remove(inactiveColor, 'w-2');
     startTestimonialAutoplay();
   }
 
@@ -839,20 +854,30 @@ document.addEventListener('DOMContentLoaded', () => {
     processCards.forEach(card => observer.observe(card));
   }
 
-  // --- HOMEPAGE 4: MOBILE CURTAIN MENU ---
+  // --- HOMEPAGE 4: FULLSCREEN OVERLAY MENU (STUNNING ANIMATIONS) ---
   const toggle4 = document.getElementById('mobile-toggle-4');
-  const menu4 = document.getElementById('mobile-menu-4');
+  const menu4 = document.getElementById('fullscreen-menu-4');
+  const close4 = document.getElementById('fullscreen-close-4');
+  const menuLinks4 = document.querySelectorAll('.fs-menu-link');
 
-  if (toggle4 && menu4) {
-    toggle4.addEventListener('click', () => {
-      menu4.classList.toggle('hidden');
-      menu4.classList.toggle('flex');
-    });
-    menu4.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menu4.classList.add('hidden');
-        menu4.classList.remove('flex');
-      });
+  if (toggle4 && menu4 && close4) {
+    const openMenu4 = () => {
+      menu4.classList.remove('translate-x-full');
+      // Stagger animate links using GSAP
+      gsap.fromTo(menuLinks4, 
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out', delay: 0.25, overwrite: 'auto' }
+      );
+    };
+
+    const closeMenu4 = () => {
+      menu4.classList.add('translate-x-full');
+    };
+
+    toggle4.addEventListener('click', openMenu4);
+    close4.addEventListener('click', closeMenu4);
+    menuLinks4.forEach(link => {
+      link.addEventListener('click', closeMenu4);
     });
   }
 
@@ -959,5 +984,385 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Run once on load
     updateCalculator();
+  }
+
+  // --- HOMEPAGE 4: HERO TEXT STAGGER REVEAL ---
+  const home4Texts = document.querySelectorAll('.home4-reveal-text');
+  if (home4Texts.length > 0) {
+    gsap.to(home4Texts, {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out',
+      delay: 0.2
+    });
+  }
+
+  // --- HOMEPAGE 4: PORTFOLIO CAROUSEL SLIDER WITH CONTROLS & DOTS ---
+  const portfolioTrack = document.getElementById('portfolio-track');
+  const portPrev = document.getElementById('portfolio-prev');
+  const portNext = document.getElementById('portfolio-next');
+  const portDots = document.querySelectorAll('.portfolio-dot');
+
+  if (portfolioTrack) {
+    let slideIdx = 0;
+    const cards = portfolioTrack.children;
+    const totalCards = cards.length;
+
+    const getVisibleCount = () => {
+      if (window.innerWidth >= 1024) return 4;
+      if (window.innerWidth >= 640) return 2;
+      return 1;
+    };
+
+    const updateSlider = () => {
+      const visible = getVisibleCount();
+      const maxIndex = totalCards - visible;
+      
+      // Clamp index bounds
+      if (slideIdx < 0) slideIdx = maxIndex;
+      if (slideIdx > maxIndex) slideIdx = 0;
+
+      const cardWidth = cards[0].offsetWidth;
+      const gap = 24; 
+      const offsetValue = slideIdx * (cardWidth + gap);
+      portfolioTrack.style.transform = `translateX(-${offsetValue}px)`;
+
+      // Update dots active classes
+      if (portDots.length > 0) {
+        portDots.forEach((dot, idx) => {
+          if (idx === slideIdx) {
+            dot.classList.add('bg-japandi-clay', 'w-4');
+            dot.classList.remove('bg-japandi-sand', 'w-2');
+          } else {
+            dot.classList.remove('bg-japandi-clay', 'w-4');
+            dot.classList.add('bg-japandi-sand', 'w-2');
+          }
+        });
+      }
+    };
+
+    const nextSlide = () => {
+      slideIdx++;
+      updateSlider();
+    };
+
+    const prevSlide = () => {
+      slideIdx--;
+      updateSlider();
+    };
+
+    let autoplayTimer = setInterval(nextSlide, 4000);
+
+    const resetTimer = () => {
+      clearInterval(autoplayTimer);
+      autoplayTimer = setInterval(nextSlide, 4000);
+    };
+
+    if (portNext) portNext.addEventListener('click', () => { nextSlide(); resetTimer(); });
+    if (portPrev) portPrev.addEventListener('click', () => { prevSlide(); resetTimer(); });
+
+    if (portDots.length > 0) {
+      portDots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          slideIdx = idx;
+          updateSlider();
+          resetTimer();
+        });
+      });
+      // Initial dot config
+      portDots[0].classList.add('w-4');
+      portDots[0].classList.remove('w-2');
+    }
+
+    window.addEventListener('resize', () => {
+      clearInterval(autoplayTimer);
+      slideIdx = 0;
+      updateSlider();
+      autoplayTimer = setInterval(nextSlide, 4000);
+    });
+  }
+
+  // --- HOMEPAGE 5: LUXURY DARK CONCEPT INTERACTIVE CONTROLS ---
+  const isHome5 = !!document.getElementById('mobile-toggle-5');
+
+  // FAQ Accordion
+  const faqToggles = document.querySelectorAll('.faq-toggle');
+  faqToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const content = toggle.nextElementSibling;
+      const icon = toggle.querySelector('.faq-icon');
+      const parent = toggle.parentElement;
+      
+      if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        content.style.maxHeight = '0px';
+        icon.style.transform = 'rotate(0deg)';
+        parent.classList.remove('border-[#C5A880]');
+        parent.classList.add('border-[#C5A880]/20');
+      } else {
+        document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = '0px');
+        document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+        document.querySelectorAll('.faq-toggle').forEach(t => {
+          t.parentElement.classList.remove('border-[#C5A880]');
+          t.parentElement.classList.add('border-[#C5A880]/20');
+        });
+
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.style.transform = 'rotate(45deg)';
+        parent.classList.add('border-[#C5A880]');
+        parent.classList.remove('border-[#C5A880]/20');
+      }
+    });
+  });
+
+  // ── Home5 Scroll Animations ────────────────────────────────────────────────
+
+  if (isHome5) {
+
+    // 1. Hero dims & scales as About section scrolls over it (deck-depth feel)
+    if (window.innerWidth > 1024) {
+      gsap.to('.stack-section:first-of-type', {
+        scale: 0.92,
+        opacity: 0.3,
+        yPercent: -6,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#about',
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true,
+        }
+      });
+    }
+
+    // 2. About Us — deck entry zoom (section scales up as it enters)
+    gsap.fromTo('#about',
+      { scale: 0.88, opacity: 0 },
+      {
+        scale: 1, opacity: 1, ease: 'none',
+        scrollTrigger: {
+          trigger: '#about',
+          start: 'top bottom',
+          end: 'top 30%',
+          scrub: true,
+        }
+      }
+    );
+
+    // 3. About Us — card swap (scrubbed so backward scroll reverses perfectly)
+    const card1 = document.getElementById('about-card-1');
+    const card2 = document.getElementById('about-card-2');
+    if (card1 && card2) {
+      const swapTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#about',
+          start: 'center center',
+          end: '+=900',
+          pin: true,
+          pinSpacing: true,
+          scrub: 0.6,
+        }
+      });
+
+      // Phase 1 (t 0→0.4): cards fly apart
+      swapTl
+        .to(card1, { x: -180, y: 70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
+        .to(card2, { x: 180, y: -70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
+        // z-index swap at midpoint
+        .set(card1, { zIndex: 30 })
+        .set(card2, { zIndex: 10 })
+        // Phase 2 (t 0.4→0.8): snap back home — layout looks identical, depth swapped
+        .to(card1, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' })
+        .to(card2, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }, '<');
+    }
+
+    // 3b. Why Choose Us — deck entry zoom
+    gsap.fromTo('#why-choose-us',
+      { scale: 0.88, opacity: 0 },
+      {
+        scale: 1, opacity: 1, ease: 'none',
+        scrollTrigger: {
+          trigger: '#why-choose-us',
+          start: 'top bottom',
+          end: 'top 30%',
+          scrub: true,
+        }
+      }
+    );
+
+    // 3c. Why Choose Us — card swap (same scrubbed pattern)
+    const whyCard1 = document.getElementById('why-card-1');
+    const whyCard2 = document.getElementById('why-card-2');
+    if (whyCard1 && whyCard2) {
+      const whySwapTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#why-choose-us',
+          start: 'center center',
+          end: '+=900',
+          pin: true,
+          pinSpacing: true,
+          scrub: 0.6,
+        }
+      });
+
+      whySwapTl
+        .to(whyCard1, { x: 180, y: -70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
+        .to(whyCard2, { x: -180, y: 70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
+        .set(whyCard1, { zIndex: 30 })
+        .set(whyCard2, { zIndex: 10 })
+        .to(whyCard1, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' })
+        .to(whyCard2, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }, '<');
+    }
+
+    // 4. Process Section — pure scrubbed deck rotation (no async, works bidirectionally)
+    const procCards = [
+      document.getElementById('proc-card-1'),
+      document.getElementById('proc-card-2'),
+      document.getElementById('proc-card-3'),
+      document.getElementById('proc-card-4'),
+    ];
+    const procLabel = document.getElementById('process-step-label');
+    const procWrapper = document.getElementById('process-cards-wrapper');
+
+    if (procWrapper && procCards.every(Boolean)) {
+      // Deck positions: front → back
+      const dp = [
+        { x: 0,  y: 0,  scale: 1,    zIndex: 40, opacity: 1    },
+        { x: 8,  y: 8,  scale: 0.97, zIndex: 30, opacity: 0.75 },
+        { x: 16, y: 16, scale: 0.94, zIndex: 20, opacity: 0.55 },
+        { x: 24, y: 24, scale: 0.91, zIndex: 10, opacity: 0.38 },
+      ];
+
+      // Set initial positions instantly
+      procCards.forEach((card, i) => gsap.set(card, dp[i]));
+
+      // Build scrubbed timeline — 3 segments (one per card swap)
+      // Rotation order per step:
+      //   Step 0 (initial): C0@dp0, C1@dp1, C2@dp2, C3@dp3
+      //   Step 1 (seg 0-1): C1@dp0, C2@dp1, C3@dp2, C0@dp3
+      //   Step 2 (seg 1-2): C2@dp0, C3@dp1, C0@dp2, C1@dp3
+      //   Step 3 (seg 2-3): C3@dp0, C0@dp1, C1@dp2, C2@dp3
+      const procTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#process',
+          start: 'center center',
+          end: '+=2400',
+          pin: true,
+          pinSpacing: true,
+          scrub: 1,
+          onUpdate: (self) => {
+            if (procLabel) {
+              const s = Math.min(Math.floor(self.progress * 3), 2) + 1;
+              procLabel.textContent = `Step 0${s + 1} of 04`;
+            }
+          }
+        }
+      });
+
+      // Segment 0→1 (Step 0 → Step 1): rotate deck by 1
+      procTl
+        .to(procCards[0], { ...dp[3], duration: 1 }, 0)
+        .to(procCards[1], { ...dp[0], duration: 1 }, 0)
+        .to(procCards[2], { ...dp[1], duration: 1 }, 0)
+        .to(procCards[3], { ...dp[2], duration: 1 }, 0)
+      // Segment 1→2 (Step 1 → Step 2)
+        .to(procCards[0], { ...dp[2], duration: 1 }, 1)
+        .to(procCards[1], { ...dp[3], duration: 1 }, 1)
+        .to(procCards[2], { ...dp[0], duration: 1 }, 1)
+        .to(procCards[3], { ...dp[1], duration: 1 }, 1)
+      // Segment 2→3 (Step 2 → Step 3)
+        .to(procCards[0], { ...dp[1], duration: 1 }, 2)
+        .to(procCards[1], { ...dp[2], duration: 1 }, 2)
+        .to(procCards[2], { ...dp[3], duration: 1 }, 2)
+        .to(procCards[3], { ...dp[0], duration: 1 }, 2);
+    }
+
+    // 5. Scroll text highlight — covers both About Us and Why Choose Us paragraphs
+    const GOLD_WORDS = [
+      'CRAFTSMANSHIP','ALIGN','REFINED','FLUSH','WATERPROOF','ACCURACY',
+      'LASER','TOLERANCE','REINFORCED','ENGINEERED','PRECISION',
+      'EPOXY','WATERPROOF','SOFT-CLOSE','BOLTED','VERIFIED'
+    ];
+    const revealParas = document.querySelectorAll('.text-reveal-para');
+    revealParas.forEach(para => {
+      const text = para.innerText;
+      para.innerHTML = text.split(' ').map(word => {
+        const isGold = GOLD_WORDS.some(k => word.toUpperCase().includes(k));
+        const cls = isGold
+          ? 'text-reveal-word text-[#C5A880] inline-block mr-1.5'
+          : 'text-reveal-word text-white/25 inline-block mr-1.5';
+        return `<span class="${cls}" style="transition:color 0.4s, opacity 0.4s">${word}</span>`;
+      }).join('');
+
+      const words = para.querySelectorAll('.text-reveal-word');
+      gsap.fromTo(words,
+        { opacity: 0.15 },
+        {
+          opacity: 1,
+          color: (_, t) => t.classList.contains('text-[#C5A880]') ? '#C5A880' : '#ffffff',
+          duration: 0.6,
+          stagger: { each: 0.045, from: 'start' },
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: para,
+            start: 'top 80%',
+            end: 'bottom 40%',
+            scrub: 0.8,
+          }
+        }
+      );
+    });
+
+    // Flush pin positions after a short delay (ensures fonts/images are laid out)
+    gsap.delayedCall(0.3, () => ScrollTrigger.refresh());
+  }
+
+  // Before/After Slider Interaction
+  const baContainer = document.getElementById('before-after-container');
+  const baOverlay = document.getElementById('before-after-overlay');
+  const baHandle = document.getElementById('before-after-handle');
+  const baImg = baOverlay ? baOverlay.querySelector('img') : null;
+
+  if (baContainer && baOverlay && baHandle && baImg) {
+    const updateSliderWidth = () => {
+      baImg.style.width = baContainer.offsetWidth + 'px';
+    };
+    
+    updateSliderWidth();
+    window.addEventListener('resize', updateSliderWidth);
+
+    const dragSlider = (e) => {
+      const rect = baContainer.getBoundingClientRect();
+      const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+      let x = clientX - rect.left;
+      if (x < 0) x = 0;
+      if (x > rect.width) x = rect.width;
+      
+      const pct = (x / rect.width) * 100;
+      baOverlay.style.width = pct + '%';
+      baHandle.style.left = pct + '%';
+    };
+
+    let isDragging = false;
+    const startDragging = (e) => {
+      isDragging = true;
+      dragSlider(e);
+      window.addEventListener('mousemove', dragSlider);
+      window.addEventListener('touchmove', dragSlider);
+    };
+
+    const stopDragging = () => {
+      if (isDragging) {
+        window.removeEventListener('mousemove', dragSlider);
+        window.removeEventListener('touchmove', dragSlider);
+        isDragging = false;
+      }
+    };
+
+    baContainer.addEventListener('mousedown', startDragging);
+    baContainer.addEventListener('touchstart', startDragging);
+    window.addEventListener('mouseup', stopDragging);
+    window.addEventListener('touchend', stopDragging);
   }
 });
