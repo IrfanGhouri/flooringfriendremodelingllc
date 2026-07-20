@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-industrial-black text-white font-inter">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flooring Friend | Industrial Modernist Remodeling</title>
+  <meta name="description" content="High contrast dark aesthetics, robust steel-framed renovations, and precision estimates in Delray Beach. Modernism built solid.">
+  <link rel="stylesheet" href="/src/index.css">
+</head>
+
+<body class="overflow-x-hidden">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 w-full z-45 border-b border-industrial-steel/40 bg-industrial-black/90 backdrop-blur-md">
+    <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="/index.html" class="flex items-center space-x-2">
+        <span class="font-syne text-2xl font-extrabold tracking-tighter text-white uppercase">
+          F<span class="text-industrial-orange">F</span>.R
+        </span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-wider font-bold">
+        <div class="relative group/nav py-2">
+          <button class="text-white hover:text-industrial-orange flex items-center space-x-1 focus:outline-none">
+            <span>Concept Switch</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <!-- Soft Dropdown -->
+          <div class="absolute top-full left-0 w-48 bg-industrial-gray border border-industrial-steel rounded shadow-lg p-3 space-y-2 hidden group-hover/nav:block z-50">
+            <a href="/index.html" class="block px-3 py-2 rounded text-xxs font-bold text-gray-300 hover:bg-industrial-steel">Home 1: Luxury</a>
+            <a href="/home2.html" class="block px-3 py-2 rounded text-xxs font-bold text-gray-300 hover:bg-industrial-steel">Home 2: Bold</a>
+            <a href="/home3.html" class="block px-3 py-2 rounded text-xxs font-bold text-gray-300 hover:bg-industrial-steel">Home 3: Minimalist</a>
+            <a href="/home4.html" class="block px-3 py-2 rounded text-xxs font-bold text-gray-300 hover:bg-industrial-steel">Home 4: Japandi</a>
+            <a href="/home5.html" class="block px-3 py-2 rounded text-xxs font-extrabold text-industrial-orange bg-industrial-steel">Home 5: Industrial</a>
+          </div>
+        </div>
+
+        <a href="#about" class="text-gray-300 hover:text-industrial-orange transition-colors">Core Specs</a>
+        <a href="#calculator" class="text-gray-300 hover:text-industrial-orange transition-colors">Estimate Tool</a>
+        <a href="#process" class="text-gray-300 hover:text-industrial-orange transition-colors">Process Build</a>
+      </div>
+
+      <!-- Action Button -->
+      <a href="tel:5617882222" class="hidden sm:inline-block bg-industrial-orange hover:bg-industrial-orangeHover text-white font-extrabold px-6 py-2.5 rounded text-xs tracking-wider uppercase transition-colors shadow-lg shadow-industrial-orange/20">
+        Call (561) 788-2222
+      </a>
+
+      <!-- Hamburger Toggle (Mobile Only) -->
+      <button id="mobile-toggle-5" class="lg:hidden text-white hover:text-industrial-orange focus:outline-none p-1">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Side Drawer (Left Sliding Heavy Border Style) -->
+    <div id="mobile-menu-5" class="fixed inset-y-0 left-0 z-50 w-[85%] max-w-sm bg-industrial-black border-r border-industrial-steel/60 p-8 flex flex-col justify-between shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
+      <div class="space-y-8">
+        <div class="flex items-center justify-between border-b border-industrial-steel/40 pb-4">
+          <span class="font-syne text-xl font-extrabold text-white tracking-tighter uppercase">
+            F<span class="text-industrial-orange">F</span>.R
+          </span>
+          <button id="mobile-close-5" class="text-gray-400 hover:text-industrial-orange focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <nav class="flex flex-col space-y-5 text-xs uppercase tracking-wider font-bold">
+          <a href="/index.html" class="text-gray-300 hover:text-industrial-orange">Home 1: Luxury</a>
+          <a href="/home2.html" class="text-gray-300 hover:text-industrial-orange">Home 2: Bold</a>
+          <a href="/home3.html" class="text-gray-300 hover:text-industrial-orange">Home 3: Minimalist</a>
+          <a href="/home4.html" class="text-gray-300 hover:text-industrial-orange">Home 4: Japandi</a>
+          <a href="/home5.html" class="text-industrial-orange font-extrabold border-l-2 border-industrial-orange pl-3">Home 5: Industrial</a>
+          <hr class="border-industrial-steel/30">
+          <a href="#about" class="text-gray-300 hover:text-industrial-orange">Core Specs</a>
+          <a href="#calculator" class="text-gray-300 hover:text-industrial-orange">Estimate Tool</a>
+          <a href="#process" class="text-gray-300 hover:text-industrial-orange">Process Build</a>
+        </nav>
+      </div>
+      <div class="border-t border-industrial-steel/40 pt-6 space-y-2 text-xs text-gray-500 font-mono">
+        <p>☎ (561) 788-2222</p>
+        <p>✉ info@flooringfriendllc.com</p>
+      </div>
+    </div>
+    <!-- Backdrop overlay for drawer -->
+    <div id="mobile-menu-backdrop-5" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 hidden lg:hidden"></div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative min-h-[90vh] lg:min-h-screen pt-28 pb-16 flex items-center bg-industrial-black overflow-hidden border-b border-industrial-steel/20">
+    <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      
+      <!-- Headline (6 cols) -->
+      <div class="lg:col-span-6 space-y-6 text-left">
+        <div class="inline-block bg-industrial-steel/30 border border-industrial-steel/50 px-3 py-1 rounded text-xxs font-mono uppercase tracking-widest text-industrial-orange">
+          SPECIFICATION // CONCEPT 5
+        </div>
+        <h1 class="font-syne text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-none tracking-tight uppercase">
+          BUILT TO LAST.<br>SHARP DESIGN.
+        </h1>
+        <p class="text-sm md:text-base text-gray-400 max-w-lg leading-relaxed">
+          Premium flooring installation, steel-framed cabinet structures, spa-bath wetrooms, and precision interior finishes. Zero placeholders. Pure construction specs in Delray Beach, FL.
+        </p>
+
+        <!-- Mechanical badges -->
+        <div class="grid grid-cols-3 gap-4 max-w-md pt-4 text-center">
+          <div class="border border-industrial-steel/50 p-3 bg-industrial-gray/40 rounded">
+            <h4 class="font-mono text-lg font-bold text-industrial-orange">100%</h4>
+            <p class="text-xxs text-gray-500 uppercase font-bold tracking-wider">Licensed</p>
+          </div>
+          <div class="border border-industrial-steel/50 p-3 bg-industrial-gray/40 rounded">
+            <h4 class="font-mono text-lg font-bold text-industrial-orange">A+</h4>
+            <p class="text-xxs text-gray-500 uppercase font-bold tracking-wider">BBB Rated</p>
+          </div>
+          <div class="border border-industrial-steel/50 p-3 bg-industrial-gray/40 rounded">
+            <h4 class="font-mono text-lg font-bold text-industrial-orange">24H</h4>
+            <p class="text-xxs text-gray-500 uppercase font-bold tracking-wider">Estimates</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Estimate Calculator (6 cols) -->
+      <div id="calculator" class="lg:col-span-6 w-full max-w-lg mx-auto">
+        <div class="bg-industrial-gray border border-industrial-steel/80 p-6 sm:p-8 rounded-2xl shadow-2xl space-y-6 text-left">
+          <div class="space-y-1 border-b border-industrial-steel/40 pb-4">
+            <h3 class="font-syne text-xl font-bold uppercase tracking-tight text-white flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 bg-industrial-orange rounded-full animate-ping"></span>
+              <span>Live Cost Estimator</span>
+            </h3>
+            <p class="text-xxs text-gray-400 font-mono">Calculate real-time project metrics instantly</p>
+          </div>
+
+          <!-- Calculator Inputs -->
+          <div class="space-y-4 font-mono text-xs">
+            
+            <!-- Step 1: Choose Service -->
+            <div class="space-y-2">
+              <label class="block text-xxs uppercase tracking-wider text-gray-400 font-bold">Select Service Area</label>
+              <div class="grid grid-cols-3 gap-2">
+                <button data-calc-service="flooring" class="py-2.5 px-2 border border-industrial-orange bg-industrial-orange/10 text-white text-center rounded font-bold transition-all text-xxs uppercase">Flooring</button>
+                <button data-calc-service="kitchen" class="py-2.5 px-2 border border-industrial-steel/50 bg-transparent text-gray-400 text-center rounded font-bold hover:border-industrial-orange transition-all text-xxs uppercase">Kitchen</button>
+                <button data-calc-service="bath" class="py-2.5 px-2 border border-industrial-steel/50 bg-transparent text-gray-400 text-center rounded font-bold hover:border-industrial-orange transition-all text-xxs uppercase">Bathroom</button>
+              </div>
+            </div>
+
+            <!-- Step 2: Slider for SQFT -->
+            <div class="space-y-2 pt-2">
+              <div class="flex justify-between items-center text-xxs uppercase tracking-wider text-gray-400 font-bold">
+                <span>Square Footage</span>
+                <span class="text-industrial-orange font-bold font-mono text-xs"><span id="sqft-val">500</span> SQFT</span>
+              </div>
+              <input id="sqft-slider" type="range" min="100" max="2500" value="500" step="50" class="w-full h-1.5 bg-industrial-steel rounded-lg appearance-none cursor-pointer accent-industrial-orange">
+            </div>
+
+            <!-- Display output calculation -->
+            <div class="bg-industrial-black border border-industrial-steel p-4 rounded text-center space-y-1">
+              <span class="text-xxs text-gray-400 uppercase tracking-widest font-bold">Estimated Cost Range</span>
+              <div class="font-mono text-2xl sm:text-3xl font-extrabold text-industrial-orange tracking-tighter">
+                $<span id="calc-min">4,000</span> - $<span id="calc-max">7,500</span>
+              </div>
+              <p class="text-xxxs text-gray-500 font-mono">Based on current Delray Beach cost material metrics</p>
+            </div>
+            
+            <form action="#" class="space-y-3" onsubmit="event.preventDefault(); alert('Lead saved! We will lock in this estimate.');">
+              <div class="grid grid-cols-2 gap-3">
+                <input type="tel" placeholder="Phone Number" required class="w-full px-3 py-2.5 text-xxs bg-industrial-black border border-industrial-steel rounded focus:outline-none focus:border-industrial-orange text-white">
+                <input type="email" placeholder="Email Address" required class="w-full px-3 py-2.5 text-xxs bg-industrial-black border border-industrial-steel rounded focus:outline-none focus:border-industrial-orange text-white">
+              </div>
+              <button type="submit" class="w-full py-3 bg-industrial-orange hover:bg-industrial-orangeHover text-white font-extrabold rounded text-xxs uppercase tracking-wider transition-colors">
+                Lock In Estimate Quote
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE SPECS -->
+  <section id="about" class="py-20 bg-industrial-gray border-b border-industrial-steel/20">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-6 text-left">
+        <span class="inline-block bg-industrial-steel/40 text-industrial-orange font-mono text-xxs px-2 py-0.5 rounded">SPECS</span>
+        <h2 class="font-syne text-3xl sm:text-5xl font-extrabold uppercase text-white leading-none">
+          ENGINEERED ACCURACY.<br>FINE MATTE DETAILS.
+        </h2>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          We operate on tight tolerance limits. Large format porcelain tiles are laser-aligned. Heavy kitchen cabinet shaker frames are reinforced. Solid engineered wood flooring transitions are flush.
+        </p>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          No fillers, no paint splatter, and zero cutting corners. We track tasks with extreme transparency and schedule timelines with fixed proposal benchmarks.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="border border-industrial-steel/50 p-6 rounded bg-industrial-black space-y-2 text-left">
+          <div class="w-8 h-8 rounded bg-industrial-orange/10 text-industrial-orange font-mono font-bold flex items-center justify-center text-xs">01</div>
+          <h4 class="font-syne font-bold text-sm text-white uppercase">Steel Hinges</h4>
+          <p class="text-xxs text-gray-500 leading-relaxed">Heavy-duty soft close steel drawer runner guides.</p>
+        </div>
+        <div class="border border-industrial-steel/50 p-6 rounded bg-industrial-black space-y-2 text-left">
+          <div class="w-8 h-8 rounded bg-industrial-orange/10 text-industrial-orange font-mono font-bold flex items-center justify-center text-xs">02</div>
+          <h4 class="font-syne font-bold text-sm text-white uppercase">Flush Seals</h4>
+          <p class="text-xxs text-gray-500 leading-relaxed">Wetroom porcelain tile sheets sealed with heavy-duty epoxy grout.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="process" class="py-20 bg-industrial-black">
+    <div class="max-w-5xl mx-auto px-6 text-left">
+      <div class="mb-16 border-l-4 border-industrial-orange pl-4">
+        <span class="text-industrial-orange font-mono text-xs uppercase font-bold tracking-widest">Build Checklist</span>
+        <h2 class="font-syne text-3xl sm:text-4xl font-extrabold uppercase text-white mt-1">Timeline Phases</h2>
+      </div>
+
+      <!-- Linear Step Row -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Step 1 -->
+        <div class="border border-industrial-steel/40 bg-industrial-gray p-6 rounded relative overflow-hidden space-y-4">
+          <div class="font-mono text-xxs text-gray-500">PHASE // 01</div>
+          <h4 class="font-syne font-bold text-white text-base uppercase">Design Proposal</h4>
+          <p class="text-xxs text-gray-450 leading-relaxed">
+            We draft layout dimensions, coordinate flooring grains, and present pricing metrics.
+          </p>
+          <div class="h-1 bg-industrial-orange w-8"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="border border-industrial-steel/40 bg-industrial-gray p-6 rounded relative overflow-hidden space-y-4">
+          <div class="font-mono text-xxs text-gray-500">PHASE // 02</div>
+          <h4 class="font-syne font-bold text-white text-base uppercase">Precision Prep</h4>
+          <p class="text-xxs text-gray-450 leading-relaxed">
+            We isolate workspaces with clean dust containment systems and level the concrete slab base.
+          </p>
+          <div class="h-1 bg-industrial-orange w-16"></div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="border border-industrial-steel/40 bg-industrial-gray p-6 rounded relative overflow-hidden space-y-4">
+          <div class="font-mono text-xxs text-gray-500">PHASE // 03</div>
+          <h4 class="font-syne font-bold text-white text-base uppercase">Build Assembly</h4>
+          <p class="text-xxs text-gray-450 leading-relaxed">
+            Craftsmen perform layout installations, secure trims, and audit micro-gaps.
+          </p>
+          <div class="h-1 bg-industrial-orange w-full"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-industrial-gray text-gray-400 py-16 border-t border-industrial-steel/30">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
+      <div class="space-y-4">
+        <span class="font-syne text-2xl font-extrabold tracking-tighter text-white uppercase">
+          F<span class="text-industrial-orange">F</span>.R
+        </span>
+        <p class="text-xs text-gray-500">
+          Industrial-grade home remodeling. Heavy duty cabinets, solid flooring, spa wetrooms.
+        </p>
+        
+        <!-- Outlined Industrial Icons -->
+        <div class="flex space-x-2.5">
+          <a href="#" class="w-8 h-8 rounded border border-industrial-steel/40 hover:border-industrial-orange hover:text-industrial-orange text-gray-400 flex items-center justify-center transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" class="w-8 h-8 rounded border border-industrial-steel/40 hover:border-industrial-orange hover:text-industrial-orange text-gray-400 flex items-center justify-center transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051C.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold text-white text-xs uppercase tracking-wider mb-4">Sitemap</h4>
+        <ul class="space-y-2 text-xs text-gray-500 font-mono">
+          <li><a href="#about" class="hover:text-industrial-orange transition-colors">Specifications</a></li>
+          <li><a href="#calculator" class="hover:text-industrial-orange transition-colors">Estimator</a></li>
+          <li><a href="#process" class="hover:text-industrial-orange transition-colors">Phases</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white text-xs uppercase tracking-wider mb-4">Switch</h4>
+        <ul class="space-y-2 text-xs text-gray-550 font-mono">
+          <li><a href="/index.html" class="hover:text-industrial-orange">Concept 1: Luxury</a></li>
+          <li><a href="/home2.html" class="hover:text-industrial-orange">Concept 2: Bold</a></li>
+          <li><a href="/home3.html" class="hover:text-industrial-orange">Concept 3: Minimal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white text-xs uppercase tracking-wider mb-4">Core Info</h4>
+        <ul class="space-y-2 text-xs text-gray-500 font-mono">
+          <li>Delray Beach, FL</li>
+          <li>info@flooringfriendllc.com</li>
+          <li>(561) 788-2222</li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 pt-12 mt-12 border-t border-industrial-steel/20 text-center text-xxs text-gray-600 font-mono">
+      © 2026 Flooring Friend Remodeling. All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

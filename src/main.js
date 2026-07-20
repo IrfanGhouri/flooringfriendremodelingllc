@@ -838,4 +838,126 @@ document.addEventListener('DOMContentLoaded', () => {
 
     processCards.forEach(card => observer.observe(card));
   }
+
+  // --- HOMEPAGE 4: MOBILE CURTAIN MENU ---
+  const toggle4 = document.getElementById('mobile-toggle-4');
+  const menu4 = document.getElementById('mobile-menu-4');
+
+  if (toggle4 && menu4) {
+    toggle4.addEventListener('click', () => {
+      menu4.classList.toggle('hidden');
+      menu4.classList.toggle('flex');
+    });
+    menu4.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu4.classList.add('hidden');
+        menu4.classList.remove('flex');
+      });
+    });
+  }
+
+  // --- HOMEPAGE 5: MOBILE LEFT DRAWER ---
+  const toggle5 = document.getElementById('mobile-toggle-5');
+  const menu5 = document.getElementById('mobile-menu-5');
+  const close5 = document.getElementById('mobile-close-5');
+  const backdrop5 = document.getElementById('mobile-menu-backdrop-5');
+
+  if (toggle5 && menu5) {
+    const openMenu5 = () => {
+      menu5.classList.remove('-translate-x-full');
+      menu5.classList.add('translate-x-0');
+      if (backdrop5) backdrop5.classList.remove('hidden');
+    };
+    const closeMenu5 = () => {
+      menu5.classList.remove('translate-x-0');
+      menu5.classList.add('-translate-x-full');
+      if (backdrop5) backdrop5.classList.add('hidden');
+    };
+
+    toggle5.addEventListener('click', openMenu5);
+    if (close5) close5.addEventListener('click', closeMenu5);
+    if (backdrop5) backdrop5.addEventListener('click', closeMenu5);
+    menu5.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu5));
+  }
+
+  // --- HOMEPAGE 4: FILTERABLE PORTFOLIO SHOWCASE ---
+  const filterButtons = document.querySelectorAll('#portfolio-filters button');
+  const showcaseItems = document.querySelectorAll('.showcase-item');
+
+  if (filterButtons.length > 0 && showcaseItems.length > 0) {
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filterVal = button.getAttribute('data-filter');
+
+        // Toggle active button visuals
+        filterButtons.forEach(btn => {
+          btn.className = 'px-4 py-2 rounded-full text-xs font-bold border border-japandi-stone text-gray-600 hover:text-japandi-clay transition-all';
+        });
+        button.className = 'px-4 py-2 rounded-full text-xs font-bold border border-japandi-charcoal bg-japandi-charcoal text-japandi-cream transition-all';
+
+        // Filter cards
+        showcaseItems.forEach(item => {
+          const itemCat = item.getAttribute('data-category');
+          if (filterVal === 'all' || itemCat === filterVal) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+  }
+
+  // --- HOMEPAGE 5: LIVE PRICE CALCULATOR ---
+  const calcButtons = document.querySelectorAll('[data-calc-service]');
+  const sqftSlider = document.getElementById('sqft-slider');
+  const sqftVal = document.getElementById('sqft-val');
+  const calcMin = document.getElementById('calc-min');
+  const calcMax = document.getElementById('calc-max');
+
+  if (sqftSlider && calcMin && calcMax) {
+    let activeService = 'flooring';
+
+    const updateCalculator = () => {
+      const sqft = parseInt(sqftSlider.value, 10);
+      if (sqftVal) sqftVal.textContent = sqft.toLocaleString();
+
+      let rateMin = 8;
+      let rateMax = 15;
+
+      if (activeService === 'kitchen') {
+        rateMin = 80;
+        rateMax = 150;
+      } else if (activeService === 'bath') {
+        rateMin = 120;
+        rateMax = 200;
+      }
+
+      const totalMin = sqft * rateMin;
+      const totalMax = sqft * rateMax;
+
+      calcMin.textContent = totalMin.toLocaleString();
+      calcMax.textContent = totalMax.toLocaleString();
+    };
+
+    // Service Selection
+    calcButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        activeService = button.getAttribute('data-calc-service');
+        
+        calcButtons.forEach(btn => {
+          btn.className = 'py-2.5 px-2 border border-industrial-steel/50 bg-transparent text-gray-400 text-center rounded font-bold hover:border-industrial-orange transition-all text-xxs uppercase';
+        });
+        button.className = 'py-2.5 px-2 border border-industrial-orange bg-industrial-orange/10 text-white text-center rounded font-bold transition-all text-xxs uppercase';
+
+        updateCalculator();
+      });
+    });
+
+    // Slider Input
+    sqftSlider.addEventListener('input', updateCalculator);
+
+    // Run once on load
+    updateCalculator();
+  }
 });

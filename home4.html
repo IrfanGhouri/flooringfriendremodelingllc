@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-japandi-cream text-japandi-charcoal font-outfit">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flooring Friend | Japandi Zen Editorial Remodeling</title>
+  <meta name="description" content="Balanced design, fine wooden flooring, and warm minimalist spaces in Delray Beach. Experience Zen in home remodeling.">
+  <link rel="stylesheet" href="/src/index.css">
+  <style>
+    /* Custom animations for filter transitions */
+    .showcase-item {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .showcase-item.hidden {
+      opacity: 0;
+      transform: scale(0.9) translateY(10px);
+      pointer-events: none;
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+  </style>
+</head>
+
+<body class="overflow-x-hidden">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 w-full z-45 border-b border-japandi-stone bg-japandi-cream/80 backdrop-blur-md">
+    <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="/index.html" class="flex items-center space-x-2 group">
+        <span class="font-playfair text-2xl font-bold tracking-tight text-japandi-charcoal">
+          flooring<span class="text-japandi-clay">friend</span>
+        </span>
+      </a>
+
+      <!-- Desktop Menu Links -->
+      <div class="hidden lg:flex items-center space-x-8 text-sm">
+        <div class="relative group/nav py-2">
+          <button class="font-bold text-japandi-charcoal flex items-center space-x-1 focus:outline-none">
+            <span>Concept Switch</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <!-- Soft Dropdown -->
+          <div class="absolute top-full left-0 w-48 bg-white border border-japandi-stone rounded-xl shadow-lg p-3 space-y-2 hidden group-hover/nav:block z-50">
+            <a href="/index.html" class="block px-3 py-2 rounded-lg text-xs font-semibold text-gray-700 hover:bg-japandi-cream">Home 1: Luxury</a>
+            <a href="/home2.html" class="block px-3 py-2 rounded-lg text-xs font-semibold text-gray-700 hover:bg-japandi-cream">Home 2: Bold</a>
+            <a href="/home3.html" class="block px-3 py-2 rounded-lg text-xs font-semibold text-gray-700 hover:bg-japandi-cream">Home 3: Minimalist</a>
+            <a href="/home4.html" class="block px-3 py-2 rounded-lg text-xs font-bold text-japandi-clay bg-japandi-cream">Home 4: Japandi</a>
+            <a href="/home5.html" class="block px-3 py-2 rounded-lg text-xs font-semibold text-gray-700 hover:bg-japandi-cream">Home 5: Industrial</a>
+          </div>
+        </div>
+
+        <a href="#about" class="font-semibold text-japandi-charcoal hover:text-japandi-clay transition-colors">Who We Are</a>
+        <a href="#gallery" class="font-semibold text-japandi-charcoal hover:text-japandi-clay transition-colors">Project Portfolio</a>
+        <a href="#process" class="font-semibold text-japandi-charcoal hover:text-japandi-clay transition-colors">The Process</a>
+      </div>
+
+      <!-- Action Button -->
+      <a href="tel:5617882222" class="hidden sm:inline-block bg-japandi-charcoal hover:bg-japandi-clay text-japandi-cream font-bold px-6 py-2.5 rounded-full text-xs tracking-wider uppercase transition-colors shadow-sm">
+        Call (561) 788-2222
+      </a>
+
+      <!-- Hamburger Toggle (Mobile Only) -->
+      <button id="mobile-toggle-4" class="lg:hidden text-japandi-charcoal hover:text-japandi-clay focus:outline-none p-1">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Dropdown Curtain Menu (Curtain Slide Down Style) -->
+    <div id="mobile-menu-4" class="hidden lg:hidden flex-col bg-japandi-cream border-b border-japandi-stone px-6 py-8 space-y-6 shadow-2xl transition-all duration-500 ease-in-out">
+      <div class="grid grid-cols-2 gap-3">
+        <a href="/index.html" class="block p-3 rounded-xl bg-white border border-japandi-stone text-center text-xs font-bold text-gray-750">Home 1</a>
+        <a href="/home2.html" class="block p-3 rounded-xl bg-white border border-japandi-stone text-center text-xs font-bold text-gray-750">Home 2</a>
+        <a href="/home3.html" class="block p-3 rounded-xl bg-white border border-japandi-stone text-center text-xs font-bold text-gray-750">Home 3</a>
+        <a href="/home4.html" class="block p-3 rounded-xl bg-japandi-clay/5 border border-japandi-clay text-center text-xs font-bold text-japandi-clay">Home 4</a>
+        <a href="/home5.html" class="block p-3 rounded-xl bg-white border border-japandi-stone text-center text-xs font-bold text-gray-750">Home 5</a>
+      </div>
+      <hr class="border-japandi-stone">
+      <nav class="flex flex-col space-y-4">
+        <a href="#about" class="font-playfair text-lg font-bold text-japandi-charcoal hover:text-japandi-clay">Who We Are</a>
+        <a href="#gallery" class="font-playfair text-lg font-bold text-japandi-charcoal hover:text-japandi-clay">Project Portfolio</a>
+        <a href="#process" class="font-playfair text-lg font-bold text-japandi-charcoal hover:text-japandi-clay">The Process</a>
+      </nav>
+      <div class="border-t border-japandi-stone pt-6 space-y-2 text-xs text-gray-550">
+        <p>☎ (561) 788-2222</p>
+        <p>✉ info@flooringfriendllc.com</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- JAPANDI HERO -->
+  <section class="relative min-h-screen pt-28 pb-16 flex items-center bg-japandi-cream overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      
+      <!-- Copy Details (7 cols) -->
+      <div class="lg:col-span-7 space-y-8 text-left">
+        <span class="inline-block border border-japandi-clay/40 px-3 py-1 rounded-full text-xxs uppercase tracking-widest text-japandi-clay font-bold">
+          Concept 4: Japandi Zen
+        </span>
+        <h1 class="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-japandi-charcoal leading-tight">
+          Crafting spaces of <br><span class="italic text-japandi-clay font-normal">quiet harmony</span>
+        </h1>
+        <p class="text-sm md:text-base text-gray-600 max-w-xl leading-relaxed">
+          We blend Scandinavian functionalism with organic Japanese minimalism. Elevate your living rooms, wellness bathrooms, and bespoke kitchens with natural oak flooring and soft tones.
+        </p>
+
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap gap-6 pt-4 border-t border-japandi-stone max-w-lg">
+          <div class="flex items-center space-x-2">
+            <span class="text-japandi-clay text-lg">✦</span>
+            <span class="text-xxs uppercase tracking-wider font-bold text-japandi-charcoal/80">Organic Materials</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-japandi-clay text-lg">✦</span>
+            <span class="text-xxs uppercase tracking-wider font-bold text-japandi-charcoal/80">BBB A+ Rated</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-japandi-clay text-lg">✦</span>
+            <span class="text-xxs uppercase tracking-wider font-bold text-japandi-charcoal/80">Delray Beach Local</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Form & Clay Image Frame (5 cols) -->
+      <div class="lg:col-span-5 relative flex flex-col items-center">
+        <!-- Offset frame backdrop -->
+        <div class="absolute -top-4 -left-4 w-full h-full border border-japandi-clay/20 rounded-3xl -z-10"></div>
+        
+        <!-- Main Form Card -->
+        <div class="w-full bg-white border border-japandi-stone p-6 sm:p-8 rounded-3xl shadow-xl space-y-6">
+          <div class="space-y-1 text-center">
+            <h3 class="font-playfair text-xl font-bold text-japandi-charcoal">Design Consultation</h3>
+            <p class="text-xxs text-japandi-clay uppercase tracking-wider font-bold">Request a warm custom estimate</p>
+          </div>
+          
+          <form action="#" class="space-y-4" onsubmit="event.preventDefault(); alert('We have received your details! Let\'s build.');">
+            <div>
+              <label class="block text-xxs uppercase tracking-wider text-gray-500 font-bold mb-1">Your Name</label>
+              <input type="text" placeholder="John Doe" required class="w-full px-4 py-3 text-xs bg-japandi-cream/50 border border-japandi-stone rounded-xl focus:outline-none focus:border-japandi-clay transition-colors text-japandi-charcoal">
+            </div>
+            
+            <div>
+              <label class="block text-xxs uppercase tracking-wider text-gray-550 font-bold mb-1">Email Address</label>
+              <input type="email" placeholder="john@example.com" required class="w-full px-4 py-3 text-xs bg-japandi-cream/50 border border-japandi-stone rounded-xl focus:outline-none focus:border-japandi-clay transition-colors text-japandi-charcoal">
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xxs uppercase tracking-wider text-gray-550 font-bold mb-1">Phone</label>
+                <input type="tel" placeholder="(561) 788-2222" required class="w-full px-4 py-3 text-xs bg-japandi-cream/50 border border-japandi-stone rounded-xl focus:outline-none focus:border-japandi-clay transition-colors text-japandi-charcoal">
+              </div>
+              <div>
+                <label class="block text-xxs uppercase tracking-wider text-gray-550 font-bold mb-1">Needed</label>
+                <select required class="w-full px-4 py-3 text-xs bg-japandi-cream/50 border border-japandi-stone rounded-xl focus:outline-none focus:border-japandi-clay transition-colors text-japandi-charcoal">
+                  <option value="">Choose...</option>
+                  <option value="flooring">Flooring</option>
+                  <option value="kitchen">Kitchen</option>
+                  <option value="bath">Bathroom</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-japandi-charcoal hover:bg-japandi-clay text-japandi-cream font-bold rounded-xl text-xs uppercase tracking-widest transition-colors shadow-md">
+              Send Request
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section id="about" class="py-20 bg-white border-y border-japandi-stone">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="relative rounded-3xl overflow-hidden aspect-[4/3] border border-japandi-stone p-2 bg-japandi-cream">
+        <img src="/images/hero.png" alt="Bespoke Zen living room" class="w-full h-full object-cover rounded-2xl">
+      </div>
+      <div class="space-y-6 text-left">
+        <span class="text-japandi-clay text-xs font-bold uppercase tracking-widest">Our Philosophy</span>
+        <h2 class="font-playfair text-3xl sm:text-4xl md:text-5xl font-light text-japandi-charcoal leading-tight">
+          Beauty in <span class="italic font-normal">subtlety & restraint</span>
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          At Flooring Friend, we believe your home should be a calming retreat. We omit visual noise in favor of continuous oak grains, flush transitions, hidden cabinetry hinges, and plaster wall details.
+        </p>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Every custom Delray Beach kitchen or bathroom remodel is approached with zen values — leaving only clean lines, soft light, and durable premium surfaces.
+        </p>
+        <div class="pt-4">
+          <a href="#gallery" class="inline-flex items-center space-x-2 text-japandi-charcoal font-bold text-xs uppercase tracking-wider group">
+            <span>Explore showcase</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERABLE PROJECT SHOWCASE -->
+  <section id="gallery" class="py-20 bg-japandi-cream">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Top header with category filter buttons -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div class="text-left space-y-2">
+          <span class="text-japandi-clay text-xs font-bold uppercase tracking-widest">Our Portfolio</span>
+          <h2 class="font-playfair text-3xl sm:text-4xl font-light text-japandi-charcoal">Zen Project Gallery</h2>
+        </div>
+        
+        <!-- Filter Controls -->
+        <div id="portfolio-filters" class="flex flex-wrap gap-2">
+          <button data-filter="all" class="px-4 py-2 rounded-full text-xs font-bold border border-japandi-charcoal bg-japandi-charcoal text-japandi-cream transition-all">All</button>
+          <button data-filter="flooring" class="px-4 py-2 rounded-full text-xs font-bold border border-japandi-stone hover:border-japandi-clay text-gray-600 hover:text-japandi-clay transition-all">Flooring</button>
+          <button data-filter="kitchen" class="px-4 py-2 rounded-full text-xs font-bold border border-japandi-stone hover:border-japandi-clay text-gray-600 hover:text-japandi-clay transition-all">Kitchens</button>
+          <button data-filter="bath" class="px-4 py-2 rounded-full text-xs font-bold border border-japandi-stone hover:border-japandi-clay text-gray-600 hover:text-japandi-clay transition-all">Baths</button>
+        </div>
+      </div>
+
+      <!-- Grid list -->
+      <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Item 1 (Flooring) -->
+        <div class="showcase-item bg-white border border-japandi-stone p-3 rounded-3xl space-y-4" data-category="flooring">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+            <img src="/images/hero.png" alt="Light oak floor" class="w-full h-full object-cover">
+          </div>
+          <div class="px-2 pb-2 text-left space-y-1">
+            <span class="text-japandi-clay text-xxs uppercase tracking-wider font-bold">Flooring</span>
+            <h4 class="font-playfair font-bold text-minimal-charcoal">Seamless Wide Plank Oak</h4>
+          </div>
+        </div>
+
+        <!-- Item 2 (Kitchen) -->
+        <div class="showcase-item bg-white border border-japandi-stone p-3 rounded-3xl space-y-4" data-category="kitchen">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+            <img src="/images/kitchen_after.png" alt="Modern kitchen cabinet" class="w-full h-full object-cover">
+          </div>
+          <div class="px-2 pb-2 text-left space-y-1">
+            <span class="text-japandi-clay text-xxs uppercase tracking-wider font-bold">Kitchen</span>
+            <h4 class="font-playfair font-bold text-minimal-charcoal">Clay Plaster Shaker Cabinetry</h4>
+          </div>
+        </div>
+
+        <!-- Item 3 (Bath) -->
+        <div class="showcase-item bg-white border border-japandi-stone p-3 rounded-3xl space-y-4" data-category="bath">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+            <img src="/images/bath_remodel.png" alt="Japandi bathroom wetroom" class="w-full h-full object-cover">
+          </div>
+          <div class="px-2 pb-2 text-left space-y-1">
+            <span class="text-japandi-clay text-xxs uppercase tracking-wider font-bold">Bathroom</span>
+            <h4 class="font-playfair font-bold text-minimal-charcoal">Monolithic Quartz Wetroom</h4>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- THE TIMELINE PROCESS -->
+  <section id="process" class="py-20 bg-white border-t border-japandi-stone">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-16 space-y-3">
+        <span class="text-japandi-clay text-xs font-bold uppercase tracking-widest">Our Method</span>
+        <h2 class="font-playfair text-3xl sm:text-4xl font-light text-japandi-charcoal">The Zen Journey</h2>
+      </div>
+
+      <!-- Vertical Timeline List -->
+      <div class="relative border-l border-japandi-stone ml-4 md:ml-8 pl-8 md:pl-16 space-y-12">
+        <!-- Line Dot 1 -->
+        <div class="relative">
+          <div class="absolute -left-[41px] md:-left-[73px] w-6 h-6 rounded-full bg-japandi-clay text-japandi-cream font-bold text-xxs flex items-center justify-center border border-white">1</div>
+          <div class="text-left space-y-1">
+            <h4 class="font-playfair text-lg font-bold text-japandi-charcoal">Bespoke Design Call</h4>
+            <p class="text-xs text-gray-550 max-w-xl leading-relaxed">
+              We chat about your spatial requirements, discuss wood/plaster raw material choices, and align on timeline needs.
+            </p>
+          </div>
+        </div>
+
+        <!-- Line Dot 2 -->
+        <div class="relative">
+          <div class="absolute -left-[41px] md:-left-[73px] w-6 h-6 rounded-full bg-japandi-clay text-japandi-cream font-bold text-xxs flex items-center justify-center border border-white">2</div>
+          <div class="text-left space-y-1">
+            <h4 class="font-playfair text-lg font-bold text-japandi-charcoal">Balanced Proposal</h4>
+            <p class="text-xs text-gray-550 max-w-xl leading-relaxed">
+              We outline a fully transparent materials quote and coordinate schedule windows with no hidden clauses.
+            </p>
+          </div>
+        </div>
+
+        <!-- Line Dot 3 -->
+        <div class="relative">
+          <div class="absolute -left-[41px] md:-left-[73px] w-6 h-6 rounded-full bg-japandi-clay text-japandi-cream font-bold text-xxs flex items-center justify-center border border-white">3</div>
+          <div class="text-left space-y-1">
+            <h4 class="font-playfair text-lg font-bold text-japandi-charcoal">Quiet Installation</h4>
+            <p class="text-xs text-gray-550 max-w-xl leading-relaxed">
+              Our local craftsmen install your materials cleanly, maintaining a peaceful, organized job site daily.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-japandi-charcoal text-japandi-stone py-16">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
+      <div class="space-y-4">
+        <span class="font-playfair text-2xl font-bold tracking-tight text-white">
+          flooring<span class="text-japandi-clay">friend</span>
+        </span>
+        <p class="text-xs text-gray-400">
+          Clean, organic, and timeless spaces. Licensed & Insured local contractors in Delray Beach, FL.
+        </p>
+        <!-- Outlined Minimal Social Icons -->
+        <div class="flex space-x-3 pt-2">
+          <a href="#" class="w-8 h-8 rounded-full border border-gray-600 hover:border-japandi-clay text-gray-400 hover:text-japandi-clay flex items-center justify-center transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" class="w-8 h-8 rounded-full border border-gray-600 hover:border-japandi-clay text-gray-400 hover:text-japandi-clay flex items-center justify-center transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051C.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold text-white text-xs uppercase tracking-wider mb-4">Nav Links</h4>
+        <ul class="space-y-2 text-xs text-gray-400">
+          <li><a href="#about" class="hover:text-japandi-clay transition-colors">Who We Are</a></li>
+          <li><a href="#gallery" class="hover:text-japandi-clay transition-colors">Portfolio</a></li>
+          <li><a href="#process" class="hover:text-japandi-clay transition-colors">Process</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white text-xs uppercase tracking-wider mb-4">Concepts</h4>
+        <ul class="space-y-2 text-xs text-gray-400">
+          <li><a href="/index.html" class="hover:text-japandi-clay transition-colors">Concept 1: Luxury</a></li>
+          <li><a href="/home2.html" class="hover:text-japandi-clay transition-colors">Concept 2: Bold</a></li>
+          <li><a href="/home3.html" class="hover:text-japandi-clay transition-colors">Concept 3: Minimal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white text-xs uppercase tracking-wider mb-4">Contact</h4>
+        <ul class="space-y-2 text-xs text-gray-400">
+          <li>Delray Beach, FL</li>
+          <li>info@flooringfriendllc.com</li>
+          <li>(561) 788-2222</li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 pt-12 mt-12 border-t border-gray-800 text-center text-xxs text-gray-500">
+      © 2026 Flooring Friend Remodeling. All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
