@@ -43,6 +43,10 @@
     .animate-drift-up:hover, .animate-drift-down:hover {
       animation-play-state: paused;
     }
+    /* Timeline bar — mobile scroll-triggered fill */
+    #bar-1.bar-filled { width: 33.333% !important; }
+    #bar-2.bar-filled { width: 66.666% !important; }
+    #bar-3.bar-filled { width: 100% !important; }
   </style>
 </head>
 
@@ -63,7 +67,7 @@
       <div class="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-widest font-bold">
         <div class="relative group/nav py-2">
           <button class="text-white hover:text-[#C5A880] flex items-center space-x-1 focus:outline-none">
-            <span>Concept Switch</span>
+            <span>Home Variations</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -90,47 +94,48 @@
         Call (561) 788-2222
       </a>
 
-      <!-- Hamburger Toggle (Mobile Only) -->
+    <!-- Hamburger Toggle (Mobile Only) -->
       <button id="mobile-toggle-5" class="lg:hidden text-white hover:text-[#C5A880] focus:outline-none p-1">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
         </svg>
       </button>
     </nav>
-
-    <!-- Mobile Side Drawer (Left Sliding Heavy Border Style) -->
-    <div id="mobile-menu-5" class="fixed inset-y-0 left-0 z-50 w-[85%] max-w-sm bg-[#151618] border-r border-[#C5A880]/20 p-8 flex flex-col justify-between shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
-      <div class="space-y-8">
-        <div class="flex items-center justify-between border-b border-[#C5A880]/20 pb-4">
-          <span class="font-montserrat text-xl font-bold text-white tracking-tight">
-            flooring<span class="text-[#C5A880]">friend</span>
-          </span>
-          <button id="mobile-close-5" class="text-gray-400 hover:text-[#C5A880] focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-          </button>
-        </div>
-        <nav class="flex flex-col space-y-5 text-xs uppercase tracking-wider font-bold">
-          <a href="/index.html" class="text-gray-300 hover:text-[#C5A880]">Home 1: Luxury</a>
-          <a href="/home2.html" class="text-gray-300 hover:text-[#C5A880]">Home 2: Bold</a>
-          <a href="/home3.html" class="text-gray-300 hover:text-[#C5A880]">Home 3: Minimalist</a>
-          <a href="/home4.html" class="text-gray-300 hover:text-[#C5A880]">Home 4: Japandi</a>
-          <a href="/home5.html" class="text-[#C5A880] font-extrabold border-l-2 border-[#C5A880] pl-3">Home 5: Luxury Dark</a>
-          <hr class="border-[#C5A880]/10">
-          <a href="#about" class="text-gray-300 hover:text-[#C5A880]">About Us</a>
-          <a href="#services" class="text-gray-300 hover:text-[#C5A880]">Services</a>
-          <a href="#why-choose-us" class="text-gray-300 hover:text-[#C5A880]">Why Us</a>
-          <a href="#calculator" class="text-gray-300 hover:text-[#C5A880]">Estimates</a>
-          <a href="#faqs" class="text-gray-300 hover:text-[#C5A880]">FAQ</a>
-        </nav>
-      </div>
-      <div class="border-t border-[#C5A880]/20 pt-6 space-y-2 text-xs text-gray-500">
-        <p>☎ (561) 788-2222</p>
-        <p>✉ info@flooringfriendllc.com</p>
-      </div>
-    </div>
-    <!-- Backdrop overlay for drawer -->
-    <div id="mobile-menu-backdrop-5" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 hidden lg:hidden"></div>
   </header>
+
+  <!-- Mobile Menu Backdrop -->
+  <div id="mobile-menu-backdrop-5" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[9998] hidden lg:hidden"></div>
+
+  <!-- Mobile Side Drawer (Solid Background & Highest z-index) -->
+  <div id="mobile-menu-5" class="fixed inset-y-0 left-0 z-[9999] w-[85%] max-w-sm bg-[#151618] border-r border-[#C5A880]/30 p-8 flex flex-col justify-between shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto">
+    <div class="space-y-8">
+      <div class="flex items-center justify-between border-b border-[#C5A880]/20 pb-4">
+        <span class="font-montserrat text-xl font-bold text-white tracking-tight">
+          flooring<span class="text-[#C5A880]">friend</span>
+        </span>
+        <button id="mobile-close-5" class="text-gray-400 hover:text-[#C5A880] focus:outline-none">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <nav class="flex flex-col space-y-5 text-xs uppercase tracking-wider font-bold">
+        <a href="/index.html" class="text-gray-300 hover:text-[#C5A880]">Home 1: Luxury</a>
+        <a href="/home2.html" class="text-gray-300 hover:text-[#C5A880]">Home 2: Bold</a>
+        <a href="/home3.html" class="text-gray-300 hover:text-[#C5A880]">Home 3: Minimalist</a>
+        <a href="/home4.html" class="text-gray-300 hover:text-[#C5A880]">Home 4: Japandi</a>
+        <a href="/home5.html" class="text-[#C5A880] font-extrabold border-l-2 border-[#C5A880] pl-3">Home 5: Luxury Dark</a>
+        <hr class="border-[#C5A880]/10">
+        <a href="#about" class="text-gray-300 hover:text-[#C5A880]">About Us</a>
+        <a href="#services" class="text-gray-300 hover:text-[#C5A880]">Services</a>
+        <a href="#why-choose-us" class="text-gray-300 hover:text-[#C5A880]">Why Us</a>
+        <a href="#calculator" class="text-gray-300 hover:text-[#C5A880]">Estimates</a>
+        <a href="#faqs" class="text-gray-300 hover:text-[#C5A880]">FAQ</a>
+      </nav>
+    </div>
+    <div class="border-t border-[#C5A880]/20 pt-6 space-y-2 text-xs text-gray-500 mt-6">
+      <p>☎ (561) 788-2222</p>
+      <p>✉ info@flooringfriendllc.com</p>
+    </div>
+  </div>
 
   <!-- FULL-WIDTH HERO SECTION WITH FULL-HEIGHT TRIPLE MARQUEES -->
   <section class="stack-section relative min-h-screen flex items-center bg-[#151618] overflow-hidden border-b border-[#C5A880]/10">
@@ -148,18 +153,18 @@
       </p>
 
       <!-- Mechanical badges -->
-      <div class="grid grid-cols-3 gap-4 max-w-md pt-4 text-center">
-        <div class="border border-[#C5A880]/20 p-4 bg-[#1E2022]/40 rounded-2xl">
-          <h4 class="text-lg font-bold text-[#C5A880]">100%</h4>
-          <p class="text-xxs text-gray-450 uppercase font-bold tracking-wider">Licensed</p>
+      <div class="grid grid-cols-3 gap-2 w-full max-w-xs sm:max-w-sm pt-4 text-center">
+        <div class="border border-[#C5A880]/20 p-3 bg-[#1E2022]/40 rounded-xl min-w-0">
+          <h4 class="text-base sm:text-lg font-bold text-[#C5A880]">100%</h4>
+          <p class="text-[10px] text-gray-400 uppercase font-bold tracking-wide leading-tight">Licensed</p>
         </div>
-        <div class="border border-[#C5A880]/20 p-4 bg-[#1E2022]/40 rounded-2xl">
-          <h4 class="text-lg font-bold text-[#C5A880]">A+</h4>
-          <p class="text-xxs text-gray-450 uppercase font-bold tracking-wider">BBB Rated</p>
+        <div class="border border-[#C5A880]/20 p-3 bg-[#1E2022]/40 rounded-xl min-w-0">
+          <h4 class="text-base sm:text-lg font-bold text-[#C5A880]">A+</h4>
+          <p class="text-[10px] text-gray-400 uppercase font-bold tracking-wide leading-tight">BBB Rated</p>
         </div>
-        <div class="border border-[#C5A880]/20 p-4 bg-[#1E2022]/40 rounded-2xl">
-          <h4 class="text-lg font-bold text-[#C5A880]">24H</h4>
-          <p class="text-xxs text-gray-450 uppercase font-bold tracking-wider">Estimates</p>
+        <div class="border border-[#C5A880]/20 p-3 bg-[#1E2022]/40 rounded-xl min-w-0">
+          <h4 class="text-base sm:text-lg font-bold text-[#C5A880]">24H</h4>
+          <p class="text-[10px] text-gray-400 uppercase font-bold tracking-wide leading-tight">Estimates</p>
         </div>
       </div>
     </div>
@@ -243,14 +248,14 @@
       <!-- Overlapping Image Cards -->
       <div class="lg:col-span-5 relative h-[340px] sm:h-[420px] lg:h-[460px] mt-8 lg:mt-0">
         <!-- Card 1 (Starts at Back, bottom-left) -->
-        <div id="about-card-1" class="absolute bottom-0 left-0 w-[88%] h-[82%] rounded-2xl overflow-hidden shadow-xl z-10 border border-[#C5A880]/20">
+        <div id="about-card-1" class="absolute bottom-0 left-0 w-[82%] h-[82%] rounded-2xl overflow-hidden shadow-xl z-10 border border-[#C5A880]/20">
           <img src="/images/bath_remodel.png" alt="Bathroom Remodel" class="w-full h-full object-cover">
           <div class="absolute bottom-0 left-0 right-0 px-5 py-3 bg-gradient-to-t from-black/80 to-transparent">
             <span class="text-[#C5A880] font-mono text-xxs uppercase tracking-widest">Wetroom Remodel</span>
           </div>
         </div>
         <!-- Card 2 (Starts at Front, top-right) -->
-        <div id="about-card-2" class="absolute top-0 right-0 w-[80%] h-[78%] rounded-2xl overflow-hidden shadow-2xl z-20 border border-[#C5A880]/30 translate-x-3 -translate-y-2">
+        <div id="about-card-2" class="absolute top-0 right-0 w-[82%] h-[82%] rounded-2xl overflow-hidden shadow-2xl z-20 border border-[#C5A880]/30">
           <img src="/images/kitchen_after.png" alt="Kitchen Renovation" class="w-full h-full object-cover">
           <div class="absolute bottom-0 left-0 right-0 px-5 py-3 bg-gradient-to-t from-black/80 to-transparent">
             <span class="text-white font-mono text-xxs uppercase tracking-widest">Kitchen Island</span>
@@ -326,24 +331,24 @@
     </div>
   </section>
 
-  <!-- WHY CHOOSE US SECTION — same layout as About Us, pinned card swap -->
-  <section id="why-choose-us" class="min-h-screen flex items-center py-24 bg-[#151618] border-b border-[#C5A880]/15 relative">
+  <!-- WHY CHOOSE US SECTION — overlapping cards + pinned swap (desktop) / crossfade on scroll (mobile) -->
+  <section id="why-choose-us" class="min-h-screen flex items-center py-24 bg-[#151618] border-b border-[#C5A880]/15 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
-      <!-- Overlapping Image Cards (LEFT this time) -->
+      <!-- Overlapping Image Cards (LEFT) -->
       <div class="lg:col-span-5 relative h-[340px] sm:h-[420px] lg:h-[460px] mt-8 lg:mt-0">
-        <!-- Card 1 (Starts at Back, top-left) -->
-        <div id="why-card-1" class="absolute top-0 left-0 w-[88%] h-[82%] rounded-2xl overflow-hidden shadow-xl z-10 border border-[#C5A880]/20">
+        <!-- Card 1 (Back, top-left) -->
+        <div id="why-card-1" class="absolute top-0 left-0 w-[82%] h-[82%] rounded-2xl overflow-hidden shadow-xl z-10 border border-[#C5A880]/20">
           <img src="/images/kitchen_before.png" alt="Before kitchen" class="w-full h-full object-cover">
           <div class="absolute bottom-0 left-0 right-0 px-5 py-3 bg-gradient-to-t from-black/80 to-transparent">
-            <span class="text-[#C5A880] font-mono text-xxs uppercase tracking-widest">Structural Integrity</span>
+            <span class="text-[#C5A880] font-mono text-xxs uppercase tracking-widest">Before</span>
           </div>
         </div>
-        <!-- Card 2 (Starts at Front, bottom-right) -->
-        <div id="why-card-2" class="absolute bottom-0 right-0 w-[80%] h-[78%] rounded-2xl overflow-hidden shadow-2xl z-20 border border-[#C5A880]/30 translate-x-3 translate-y-2">
-          <img src="/images/hero.png" alt="Hardwood flooring" class="w-full h-full object-cover">
+        <!-- Card 2 (Front, bottom-right) -->
+        <div id="why-card-2" class="absolute bottom-0 right-0 w-[82%] h-[82%] rounded-2xl overflow-hidden shadow-2xl z-20 border border-[#C5A880]/30">
+          <img src="/images/kitchen_after.png" alt="After kitchen remodel" class="w-full h-full object-cover">
           <div class="absolute bottom-0 left-0 right-0 px-5 py-3 bg-gradient-to-t from-black/80 to-transparent">
-            <span class="text-white font-mono text-xxs uppercase tracking-widest">Flush Hardwood</span>
+            <span class="text-white font-mono text-xxs uppercase tracking-widest">After</span>
           </div>
         </div>
       </div>
@@ -357,23 +362,23 @@
         <p class="text-reveal-para font-montserrat text-lg sm:text-xl font-bold leading-relaxed">
           Epoxy-grouted seams are completely waterproof. Heavy cabinet tracks guide soft-close motions cleanly. Handrails are bolted directly into wood studs. Performance verified by onsite test checks.
         </p>
-        <div class="grid grid-cols-2 gap-4 pt-2">
-          <div class="border border-[#C5A880]/20 p-5 rounded-2xl bg-[#1E2022] space-y-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <div class="group border border-[#C5A880]/20 hover:border-[#C5A880]/50 p-4 rounded-2xl bg-[#1E2022] space-y-2 transition-colors duration-300">
             <div class="w-8 h-8 rounded-full bg-[#C5A880]/10 text-[#C5A880] font-mono font-bold flex items-center justify-center text-xs">01</div>
             <h4 class="font-montserrat font-bold text-sm text-white uppercase">Steel Hinges</h4>
             <p class="text-xxs text-gray-500 leading-relaxed">Heavy-duty soft close steel drawer runner guides.</p>
           </div>
-          <div class="border border-[#C5A880]/20 p-5 rounded-2xl bg-[#1E2022] space-y-2">
+          <div class="group border border-[#C5A880]/20 hover:border-[#C5A880]/50 p-4 rounded-2xl bg-[#1E2022] space-y-2 transition-colors duration-300">
             <div class="w-8 h-8 rounded-full bg-[#C5A880]/10 text-[#C5A880] font-mono font-bold flex items-center justify-center text-xs">02</div>
             <h4 class="font-montserrat font-bold text-sm text-white uppercase">Flush Seals</h4>
             <p class="text-xxs text-gray-500 leading-relaxed">Wetroom porcelain tile sheets sealed with heavy-duty epoxy grout.</p>
           </div>
-          <div class="border border-[#C5A880]/20 p-5 rounded-2xl bg-[#1E2022] space-y-2">
+          <div class="group border border-[#C5A880]/20 hover:border-[#C5A880]/50 p-4 rounded-2xl bg-[#1E2022] space-y-2 transition-colors duration-300">
             <div class="w-8 h-8 rounded-full bg-[#C5A880]/10 text-[#C5A880] font-mono font-bold flex items-center justify-center text-xs">03</div>
             <h4 class="font-montserrat font-bold text-sm text-white uppercase">Fixed Quotes</h4>
             <p class="text-xxs text-gray-500 leading-relaxed">Contract price locked before crew starts. No surprise charges.</p>
           </div>
-          <div class="border border-[#C5A880]/20 p-5 rounded-2xl bg-[#1E2022] space-y-2">
+          <div class="group border border-[#C5A880]/20 hover:border-[#C5A880]/50 p-4 rounded-2xl bg-[#1E2022] space-y-2 transition-colors duration-300">
             <div class="w-8 h-8 rounded-full bg-[#C5A880]/10 text-[#C5A880] font-mono font-bold flex items-center justify-center text-xs">04</div>
             <h4 class="font-montserrat font-bold text-sm text-white uppercase">Permitted Work</h4>
             <p class="text-xxs text-gray-500 leading-relaxed">We handle all Delray Beach city permits and inspections.</p>
@@ -384,8 +389,10 @@
     </div>
   </section>
 
-  <!-- OUR PROCESS SECTION — Pinned 4-Card Scroll Deck -->
-  <section id="process" class="stack-section min-h-screen flex items-center py-24 bg-[#1E2022] border-b border-[#C5A880]/15 relative overflow-hidden">
+
+
+  <!-- OUR PROCESS SECTION — Pinned 4-Card Scroll Deck (desktop) / Stacked cards (mobile) -->
+  <section id="process" class="stack-section flex items-center py-16 lg:py-24 bg-[#1E2022] border-b border-[#C5A880]/15 relative">
     <div class="max-w-7xl mx-auto px-6 w-full">
 
       <!-- Section Header -->
@@ -396,52 +403,52 @@
       </div>
 
       <!-- 4 Process Cards -->
-      <div id="process-cards-wrapper" class="relative w-full max-w-4xl mx-auto h-[260px] sm:h-[320px] lg:h-[380px]">
+      <div id="process-cards-wrapper" class="relative w-full max-w-4xl mx-auto lg:h-[380px]">
 
-        <!-- Step label indicator -->
-        <div id="process-step-label" class="absolute -top-10 left-0 font-mono text-[#C5A880] text-xs uppercase tracking-widest">Step 01 of 04</div>
+        <!-- Step label indicator (desktop only) -->
+        <div id="process-step-label" class="hidden lg:block absolute -top-10 left-0 font-mono text-[#C5A880] text-xs uppercase tracking-widest">Step 01 of 04</div>
 
-        <!-- Card A: Consultation (z-40, front) -->
-        <div id="proc-card-1" class="absolute inset-0 rounded-3xl overflow-hidden border border-[#C5A880]/30 shadow-2xl z-40">
+        <!-- Card A: Consultation (front) -->
+        <div id="proc-card-1" class="lg:absolute lg:inset-0 relative w-full aspect-video lg:aspect-auto rounded-2xl overflow-hidden border border-[#C5A880]/30 shadow-2xl z-40 mb-4 lg:mb-0">
           <img src="/images/hero.png" alt="Consultation" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-8">
-            <span class="text-[#C5A880] font-mono text-xxs uppercase tracking-widest block mb-2">Phase 01 — Discovery</span>
-            <h3 class="font-montserrat font-extrabold text-2xl text-white uppercase mb-1">Consultation &amp; Discovery</h3>
-            <p class="text-gray-300 text-xs max-w-md">Our specialists visit your property, take full measurements, discuss materials, and walk you through all aesthetic options.</p>
+          <div class="absolute bottom-0 left-0 right-0 p-5 lg:p-8">
+            <span class="text-[#C5A880] font-mono text-xxs uppercase tracking-widest block mb-1 lg:mb-2">Phase 01 — Discovery</span>
+            <h3 class="font-montserrat font-extrabold text-lg lg:text-2xl text-white uppercase mb-1">Consultation &amp; Discovery</h3>
+            <p class="text-gray-300 text-xs max-w-md hidden sm:block">Our specialists visit your property, take full measurements, discuss materials, and walk you through all aesthetic options.</p>
           </div>
         </div>
 
-        <!-- Card B: Estimate (z-30) -->
-        <div id="proc-card-2" class="absolute inset-0 rounded-3xl overflow-hidden border border-[#C5A880]/20 shadow-xl z-30 translate-x-5 translate-y-5 scale-[0.97]">
+        <!-- Card B: Estimate -->
+        <div id="proc-card-2" class="lg:absolute lg:inset-0 relative w-full aspect-video lg:aspect-auto rounded-2xl overflow-hidden border border-[#C5A880]/20 shadow-xl z-30 lg:translate-x-[10px] lg:translate-y-[10px] lg:scale-[0.96] mb-4 lg:mb-0">
           <img src="/images/kitchen_before.png" alt="Estimate" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-8">
-            <span class="text-[#C5A880] font-mono text-xxs uppercase tracking-widest block mb-2">Phase 02 — Planning</span>
-            <h3 class="font-montserrat font-extrabold text-2xl text-white uppercase mb-1">Transparent Estimate</h3>
-            <p class="text-gray-300 text-xs max-w-md">We deliver a fixed line-item quote — no hidden charges. Materials, labour, and timeline laid out clearly before we begin.</p>
+          <div class="absolute bottom-0 left-0 right-0 p-5 lg:p-8">
+            <span class="text-[#C5A880] font-mono text-xxs uppercase tracking-widest block mb-1 lg:mb-2">Phase 02 — Planning</span>
+            <h3 class="font-montserrat font-extrabold text-lg lg:text-2xl text-white uppercase mb-1">Transparent Estimate</h3>
+            <p class="text-gray-300 text-xs max-w-md hidden sm:block">We deliver a fixed line-item quote — no hidden charges. Materials, labour, and timeline laid out clearly before we begin.</p>
           </div>
         </div>
 
-        <!-- Card C: Execution (z-20) -->
-        <div id="proc-card-3" class="absolute inset-0 rounded-3xl overflow-hidden border border-[#C5A880]/15 shadow-lg z-20 translate-x-10 translate-y-10 scale-[0.94]">
+        <!-- Card C: Execution -->
+        <div id="proc-card-3" class="lg:absolute lg:inset-0 relative w-full aspect-video lg:aspect-auto rounded-2xl overflow-hidden border border-[#C5A880]/15 shadow-lg z-20 lg:translate-x-[20px] lg:translate-y-[20px] lg:scale-[0.92] mb-4 lg:mb-0">
           <img src="/images/bath_remodel.png" alt="Execution" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-8">
-            <span class="text-[#C5A880] font-mono text-xxs uppercase tracking-widest block mb-2">Phase 03 — Execution</span>
-            <h3 class="font-montserrat font-extrabold text-2xl text-white uppercase mb-1">Licensed Crew Build</h3>
-            <p class="text-gray-300 text-xs max-w-md">Our crews handle demolition, prep, installation, and daily clean-up with precision and care for your property.</p>
+          <div class="absolute bottom-0 left-0 right-0 p-5 lg:p-8">
+            <span class="text-[#C5A880] font-mono text-xxs uppercase tracking-widest block mb-1 lg:mb-2">Phase 03 — Execution</span>
+            <h3 class="font-montserrat font-extrabold text-lg lg:text-2xl text-white uppercase mb-1">Licensed Crew Build</h3>
+            <p class="text-gray-300 text-xs max-w-md hidden sm:block">Our crews handle demolition, prep, installation, and daily clean-up with precision and care for your property.</p>
           </div>
         </div>
 
-        <!-- Card D: Handover (z-10, back) -->
-        <div id="proc-card-4" class="absolute inset-0 rounded-3xl overflow-hidden border border-[#C5A880]/10 shadow-md z-10 translate-x-16 translate-y-16 scale-[0.91]">
+        <!-- Card D: Handover (back) -->
+        <div id="proc-card-4" class="lg:absolute lg:inset-0 relative w-full aspect-video lg:aspect-auto rounded-2xl overflow-hidden border border-[#C5A880]/10 shadow-md z-10 lg:translate-x-[30px] lg:translate-y-[30px] lg:scale-[0.88] mb-4 lg:mb-0">
           <img src="/images/painting_service.png" alt="Handover" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-8">
-            <span class="text-[#C5A880] font-mono text-xxs uppercase tracking-widest block mb-2">Phase 04 — Handover</span>
-            <h3 class="font-montserrat font-extrabold text-2xl text-white uppercase mb-1">Final Audit &amp; Sign-Off</h3>
-            <p class="text-gray-300 text-xs max-w-md">We walk through the finished result together, checking thresholds, caulking, hardware, and finishes before you sign off.</p>
+          <div class="absolute bottom-0 left-0 right-0 p-5 lg:p-8">
+            <span class="text-[#C5A880] font-mono text-xxs uppercase tracking-widest block mb-1 lg:mb-2">Phase 04 — Handover</span>
+            <h3 class="font-montserrat font-extrabold text-lg lg:text-2xl text-white uppercase mb-1">Final Audit &amp; Sign-Off</h3>
+            <p class="text-gray-300 text-xs max-w-md hidden sm:block">We walk through the finished result together, checking thresholds, caulking, hardware, and finishes before you sign off.</p>
           </div>
         </div>
 
@@ -513,31 +520,40 @@
       <!-- Linear Step Row -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Step 1 -->
-        <div class="border border-[#C5A880]/20 bg-[#1E2022] p-6 rounded-2xl relative overflow-hidden space-y-4">
+        <div class="timeline-card group border border-[#C5A880]/20 hover:border-[#C5A880]/50 bg-[#1E2022] p-6 rounded-2xl relative overflow-hidden space-y-4 transition-all duration-300 hover:-translate-y-1">
           <div class="font-mono text-xxs text-gray-500">PHASE // 01</div>
           <h4 class="font-montserrat font-bold text-white text-base uppercase">Design Proposal</h4>
           <p class="text-xxs text-gray-450 leading-relaxed">
             We draft layout dimensions, coordinate flooring grains, and present pricing metrics.
           </p>
-          <div class="h-1 bg-[#C5A880] w-8"></div>
+          <!-- Bar: 0% → 33% on hover / scroll (mobile) -->
+          <div class="relative h-1 w-full bg-[#C5A880]/10 rounded-full overflow-hidden">
+            <div id="bar-1" class="timeline-bar absolute inset-y-0 left-0 bg-[#C5A880] rounded-full w-0 group-hover:w-1/3 transition-all duration-500 ease-out"></div>
+          </div>
         </div>
         <!-- Step 2 -->
-        <div class="border border-[#C5A880]/20 bg-[#1E2022] p-6 rounded-2xl relative overflow-hidden space-y-4">
+        <div class="timeline-card group border border-[#C5A880]/20 hover:border-[#C5A880]/50 bg-[#1E2022] p-6 rounded-2xl relative overflow-hidden space-y-4 transition-all duration-300 hover:-translate-y-1">
           <div class="font-mono text-xxs text-gray-500">PHASE // 02</div>
           <h4 class="font-montserrat font-bold text-white text-base uppercase">Precision Prep</h4>
           <p class="text-xxs text-gray-450 leading-relaxed">
             We isolate workspaces with clean dust containment systems and level the concrete slab base.
           </p>
-          <div class="h-1 bg-[#C5A880] w-16"></div>
+          <!-- Bar: 33% → 66% on hover / scroll (mobile) -->
+          <div class="relative h-1 w-full bg-[#C5A880]/10 rounded-full overflow-hidden">
+            <div id="bar-2" class="timeline-bar absolute inset-y-0 left-0 bg-[#C5A880] rounded-full w-1/3 group-hover:w-2/3 transition-all duration-500 ease-out"></div>
+          </div>
         </div>
         <!-- Step 3 -->
-        <div class="border border-[#C5A880]/20 bg-[#1E2022] p-6 rounded-2xl relative overflow-hidden space-y-4">
+        <div class="timeline-card group border border-[#C5A880]/20 hover:border-[#C5A880]/50 bg-[#1E2022] p-6 rounded-2xl relative overflow-hidden space-y-4 transition-all duration-300 hover:-translate-y-1">
           <div class="font-mono text-xxs text-gray-500">PHASE // 03</div>
           <h4 class="font-montserrat font-bold text-white text-base uppercase">Build Assembly</h4>
           <p class="text-xxs text-gray-450 leading-relaxed">
             Craftsmen perform layout installations, secure trims, and audit micro-gaps.
           </p>
-          <div class="h-1 bg-[#C5A880] w-full"></div>
+          <!-- Bar: 66% → 100% on hover / scroll (mobile) -->
+          <div class="relative h-1 w-full bg-[#C5A880]/10 rounded-full overflow-hidden">
+            <div id="bar-3" class="timeline-bar absolute inset-y-0 left-0 bg-[#C5A880] rounded-full w-2/3 group-hover:w-full transition-all duration-500 ease-out"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -598,6 +614,39 @@
   </footer>
 
   <script type="module" src="/src/main.js"></script>
+
+  <!-- Timeline bar: auto-fill on scroll for touch/mobile devices -->
+  <script>
+    (function () {
+      // Activate on touch screens or mobile viewports (< 1024px)
+      const isTouchOrMobile = window.matchMedia('(hover: none)').matches || window.innerWidth < 1024;
+      if (!isTouchOrMobile) return;
+
+      const bars = [
+        document.getElementById('bar-1'),
+        document.getElementById('bar-2'),
+        document.getElementById('bar-3'),
+      ];
+
+      const cards = document.querySelectorAll('.timeline-card');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          // Find which card this is (0-indexed)
+          const idx = Array.from(cards).indexOf(entry.target);
+          if (idx === -1) return;
+          // Stagger: each card fires 150ms after entering
+          setTimeout(() => {
+            if (bars[idx]) bars[idx].classList.add('bar-filled');
+          }, idx * 150);
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.2 });
+
+      cards.forEach(card => observer.observe(card));
+    })();
+  </script>
 </body>
 
 </html>

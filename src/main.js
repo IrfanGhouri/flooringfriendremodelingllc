@@ -892,11 +892,13 @@ document.addEventListener('DOMContentLoaded', () => {
       menu5.classList.remove('-translate-x-full');
       menu5.classList.add('translate-x-0');
       if (backdrop5) backdrop5.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
     };
     const closeMenu5 = () => {
       menu5.classList.remove('translate-x-0');
       menu5.classList.add('-translate-x-full');
       if (backdrop5) backdrop5.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
     };
 
     toggle5.addEventListener('click', openMenu5);
@@ -1119,103 +1121,103 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Home5 Scroll Animations ────────────────────────────────────────────────
 
   if (isHome5) {
+    // Mobile = anything below 1280px (covers phones AND tablets where ±180px translations fly off screen)
+    const isMobile = window.innerWidth < 1280;
 
-    // 1. Hero dims & scales as About section scrolls over it (deck-depth feel)
-    if (window.innerWidth > 1024) {
+    // 1. Hero dims as About enters (desktop only — no pin needed)
+    if (!isMobile) {
       gsap.to('.stack-section:first-of-type', {
-        scale: 0.92,
-        opacity: 0.3,
-        yPercent: -6,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '#about',
-          start: 'top bottom',
-          end: 'top top',
-          scrub: true,
-        }
+        scale: 0.92, opacity: 0.3, yPercent: -6, ease: 'none',
+        scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'top top', scrub: true }
       });
     }
 
-    // 2. About Us — deck entry zoom (section scales up as it enters)
-    gsap.fromTo('#about',
-      { scale: 0.88, opacity: 0 },
-      {
-        scale: 1, opacity: 1, ease: 'none',
-        scrollTrigger: {
-          trigger: '#about',
-          start: 'top bottom',
-          end: 'top 30%',
-          scrub: true,
-        }
-      }
-    );
+    // 2. (Zoom-in entry removed — conflicts with pin animation)
 
-    // 3. About Us — card swap (scrubbed so backward scroll reverses perfectly)
+    // 3. About Us — card swap
     const card1 = document.getElementById('about-card-1');
     const card2 = document.getElementById('about-card-2');
     if (card1 && card2) {
-      const swapTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '#about',
-          start: 'center center',
-          end: '+=900',
-          pin: true,
-          pinSpacing: true,
-          scrub: 0.6,
-        }
-      });
+      if (!isMobile) {
+        // Desktop: pinned scrubbed card swap (original style)
+        const swapTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#about', start: 'center center', end: '+=450',
+            pin: true, pinSpacing: true, scrub: 0.15,
+          }
+        });
+        swapTl
+          .to(card1, { x: -180, y: 70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
+          .to(card2, { x: 180, y: -70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
+          .set(card1, { zIndex: 30 })
+          .set(card2, { zIndex: 10 })
+          .to(card1, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' })
+          .to(card2, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }, '<');
+      } else {
+        // Mobile: scrubbed swap without pinning.
+        // Card 1 & Card 2 slide outward slightly, swap z-index, and return to x: 0, y: 0.
+        const mobileSwapTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: card1.parentElement,
+            start: 'top 70%',
+            end: 'bottom 30%',
+            scrub: 0.2,
+          }
+        });
 
-      // Phase 1 (t 0→0.4): cards fly apart
-      swapTl
-        .to(card1, { x: -180, y: 70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
-        .to(card2, { x: 180, y: -70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
-        // z-index swap at midpoint
-        .set(card1, { zIndex: 30 })
-        .set(card2, { zIndex: 10 })
-        // Phase 2 (t 0.4→0.8): snap back home — layout looks identical, depth swapped
-        .to(card1, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' })
-        .to(card2, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }, '<');
+        mobileSwapTl
+          .to(card1, { x: 30, y: -20, duration: 0.5, ease: 'power1.inOut' }, 0)
+          .to(card2, { x: -30, y: 20, duration: 0.5, ease: 'power1.inOut' }, 0)
+          .set(card1, { zIndex: 30 }, 0.5)
+          .set(card2, { zIndex: 10 }, 0.5)
+          .to(card1, { x: 0, y: 0, duration: 0.5, ease: 'power1.inOut' }, 0.5)
+          .to(card2, { x: 0, y: 0, duration: 0.5, ease: 'power1.inOut' }, 0.5);
+      }
     }
 
-    // 3b. Why Choose Us — deck entry zoom
-    gsap.fromTo('#why-choose-us',
-      { scale: 0.88, opacity: 0 },
-      {
-        scale: 1, opacity: 1, ease: 'none',
-        scrollTrigger: {
-          trigger: '#why-choose-us',
-          start: 'top bottom',
-          end: 'top 30%',
-          scrub: true,
-        }
-      }
-    );
+    // 4. (Why Choose Us zoom-in entry removed — conflicts with pin animation)
 
-    // 3c. Why Choose Us — card swap (same scrubbed pattern)
+    // 5. Why Choose Us — card swap
     const whyCard1 = document.getElementById('why-card-1');
     const whyCard2 = document.getElementById('why-card-2');
     if (whyCard1 && whyCard2) {
-      const whySwapTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '#why-choose-us',
-          start: 'center center',
-          end: '+=900',
-          pin: true,
-          pinSpacing: true,
-          scrub: 0.6,
-        }
-      });
+      if (!isMobile) {
+        // Desktop: original pinned x/y swap
+        const whySwapTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#why-choose-us', start: 'center center', end: '+=450',
+            pin: true, pinSpacing: true, scrub: 0.15,
+          }
+        });
+        whySwapTl
+          .to(whyCard1, { x: 180, y: -70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
+          .to(whyCard2, { x: -180, y: 70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
+          .set(whyCard1, { zIndex: 30 })
+          .set(whyCard2, { zIndex: 10 })
+          .to(whyCard1, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' })
+          .to(whyCard2, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }, '<');
+      } else {
+        // Mobile: scrubbed depth swap returning to 0,0
+        const mobileWhySwapTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: whyCard1.parentElement,
+            start: 'top 70%',
+            end: 'bottom 30%',
+            scrub: 0.2,
+          }
+        });
 
-      whySwapTl
-        .to(whyCard1, { x: 180, y: -70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
-        .to(whyCard2, { x: -180, y: 70, scale: 0.78, opacity: 0.2, duration: 0.4, ease: 'power2.in' }, 0)
-        .set(whyCard1, { zIndex: 30 })
-        .set(whyCard2, { zIndex: 10 })
-        .to(whyCard1, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' })
-        .to(whyCard2, { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }, '<');
+        mobileWhySwapTl
+          .to(whyCard1, { x: 30, y: 20, duration: 0.5, ease: 'power1.inOut' }, 0)
+          .to(whyCard2, { x: -30, y: -20, duration: 0.5, ease: 'power1.inOut' }, 0)
+          .set(whyCard1, { zIndex: 30 }, 0.5)
+          .set(whyCard2, { zIndex: 10 }, 0.5)
+          .to(whyCard1, { x: 0, y: 0, duration: 0.5, ease: 'power1.inOut' }, 0.5)
+          .to(whyCard2, { x: 0, y: 0, duration: 0.5, ease: 'power1.inOut' }, 0.5);
+      }
     }
 
-    // 4. Process Section — pure scrubbed deck rotation (no async, works bidirectionally)
+    // 6. Process Section — smooth scrubbed deck rotation
     const procCards = [
       document.getElementById('proc-card-1'),
       document.getElementById('proc-card-2'),
@@ -1226,73 +1228,94 @@ document.addEventListener('DOMContentLoaded', () => {
     const procWrapper = document.getElementById('process-cards-wrapper');
 
     if (procWrapper && procCards.every(Boolean)) {
-      // Deck positions: front → back
-      const dp = [
-        { x: 0,  y: 0,  scale: 1,    zIndex: 40, opacity: 1    },
-        { x: 8,  y: 8,  scale: 0.97, zIndex: 30, opacity: 0.75 },
-        { x: 16, y: 16, scale: 0.94, zIndex: 20, opacity: 0.55 },
-        { x: 24, y: 24, scale: 0.91, zIndex: 10, opacity: 0.38 },
-      ];
+      if (!isMobile) {
+        // Deck positions: front → back (offset increases for depth illusion)
+        const dp = [
+          { x: 0,  y: 0,  scale: 1,    zIndex: 40, opacity: 1    },
+          { x: 10, y: 10, scale: 0.96, zIndex: 30, opacity: 0.72 },
+          { x: 20, y: 20, scale: 0.92, zIndex: 20, opacity: 0.50 },
+          { x: 30, y: 30, scale: 0.88, zIndex: 10, opacity: 0.32 },
+        ];
 
-      // Set initial positions instantly
-      procCards.forEach((card, i) => gsap.set(card, dp[i]));
+        // Set initial stacked positions
+        procCards.forEach((card, i) => gsap.set(card, dp[i]));
 
-      // Build scrubbed timeline — 3 segments (one per card swap)
-      // Rotation order per step:
-      //   Step 0 (initial): C0@dp0, C1@dp1, C2@dp2, C3@dp3
-      //   Step 1 (seg 0-1): C1@dp0, C2@dp1, C3@dp2, C0@dp3
-      //   Step 2 (seg 1-2): C2@dp0, C3@dp1, C0@dp2, C1@dp3
-      //   Step 3 (seg 2-3): C3@dp0, C0@dp1, C1@dp2, C2@dp3
-      const procTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '#process',
-          start: 'center center',
-          end: '+=2400',
-          pin: true,
-          pinSpacing: true,
-          scrub: 1,
-          onUpdate: (self) => {
-            if (procLabel) {
-              const s = Math.min(Math.floor(self.progress * 3), 2) + 1;
-              procLabel.textContent = `Step 0${s + 1} of 04`;
+        // Step labels
+        const stepLabels = ['Step 01 of 04', 'Step 02 of 04', 'Step 03 of 04', 'Step 04 of 04'];
+
+        // Smooth scrubbed timeline — each card eases in and out between positions
+        // scrub:2 = 2-second lag for buttery smooth feel
+        const procTl = gsap.timeline({
+          defaults: { ease: 'power2.inOut' },
+          scrollTrigger: {
+            trigger: '#process',
+            start: 'center center',
+            end: '+=1200',
+            pin: true,
+            pinSpacing: true,
+            scrub: 0.5,
+            onUpdate: (self) => {
+              if (procLabel) {
+                const step = Math.min(Math.floor(self.progress * 3), 2);
+                procLabel.textContent = stepLabels[step + 1];
+              }
             }
           }
-        }
-      });
+        });
 
-      // Segment 0→1 (Step 0 → Step 1): rotate deck by 1
-      procTl
-        .to(procCards[0], { ...dp[3], duration: 1 }, 0)
-        .to(procCards[1], { ...dp[0], duration: 1 }, 0)
-        .to(procCards[2], { ...dp[1], duration: 1 }, 0)
-        .to(procCards[3], { ...dp[2], duration: 1 }, 0)
-      // Segment 1→2 (Step 1 → Step 2)
-        .to(procCards[0], { ...dp[2], duration: 1 }, 1)
-        .to(procCards[1], { ...dp[3], duration: 1 }, 1)
-        .to(procCards[2], { ...dp[0], duration: 1 }, 1)
-        .to(procCards[3], { ...dp[1], duration: 1 }, 1)
-      // Segment 2→3 (Step 2 → Step 3)
-        .to(procCards[0], { ...dp[1], duration: 1 }, 2)
-        .to(procCards[1], { ...dp[2], duration: 1 }, 2)
-        .to(procCards[2], { ...dp[3], duration: 1 }, 2)
-        .to(procCards[3], { ...dp[0], duration: 1 }, 2);
+        // Rotation per segment (each segment = 1 unit of timeline duration):
+        //  Step 0→1: C0 goes to back (dp3), C1 comes front (dp0), C2→dp1, C3→dp2
+        //  Step 1→2: C1 goes to back (dp3), C2 comes front (dp0), C3→dp1, C0→dp2
+        //  Step 2→3: C2 goes to back (dp3), C3 comes front (dp0), C0→dp1, C1→dp2
+        procTl
+          // Segment 0 → 1
+          .to(procCards[0], { ...dp[3], duration: 1 }, 0)
+          .to(procCards[1], { ...dp[0], duration: 1 }, 0)
+          .to(procCards[2], { ...dp[1], duration: 1 }, 0)
+          .to(procCards[3], { ...dp[2], duration: 1 }, 0)
+          // Segment 1 → 2
+          .to(procCards[0], { ...dp[2], duration: 1 }, 1)
+          .to(procCards[1], { ...dp[3], duration: 1 }, 1)
+          .to(procCards[2], { ...dp[0], duration: 1 }, 1)
+          .to(procCards[3], { ...dp[1], duration: 1 }, 1)
+          // Segment 2 → 3
+          .to(procCards[0], { ...dp[1], duration: 1 }, 2)
+          .to(procCards[1], { ...dp[2], duration: 1 }, 2)
+          .to(procCards[2], { ...dp[3], duration: 1 }, 2)
+          .to(procCards[3], { ...dp[0], duration: 1 }, 2);
+
+      } else {
+        // Mobile: show all 4 cards as a vertical stack — animate in one by one
+        procCards.forEach((card, i) => {
+          gsap.set(card, { position: 'relative', inset: 'auto', transform: 'none',
+            opacity: 0, y: 30, marginBottom: '12px', zIndex: 10 - i });
+          gsap.to(card, {
+            opacity: 1, y: 0, duration: 0.5, ease: 'power2.out',
+            scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none none' },
+            delay: i * 0.1,
+          });
+        });
+        // On mobile show all cards in flow layout
+        procWrapper.style.height = 'auto';
+        procWrapper.style.display = 'flex';
+        procWrapper.style.flexDirection = 'column';
+      }
     }
 
-    // 5. Scroll text highlight — covers both About Us and Why Choose Us paragraphs
+    // 7. Scroll text highlight — About Us + Why Choose Us paragraphs
     const GOLD_WORDS = [
       'CRAFTSMANSHIP','ALIGN','REFINED','FLUSH','WATERPROOF','ACCURACY',
       'LASER','TOLERANCE','REINFORCED','ENGINEERED','PRECISION',
-      'EPOXY','WATERPROOF','SOFT-CLOSE','BOLTED','VERIFIED'
+      'EPOXY','SOFT-CLOSE','BOLTED','VERIFIED',
     ];
-    const revealParas = document.querySelectorAll('.text-reveal-para');
-    revealParas.forEach(para => {
+    document.querySelectorAll('.text-reveal-para').forEach(para => {
       const text = para.innerText;
       para.innerHTML = text.split(' ').map(word => {
         const isGold = GOLD_WORDS.some(k => word.toUpperCase().includes(k));
         const cls = isGold
           ? 'text-reveal-word text-[#C5A880] inline-block mr-1.5'
           : 'text-reveal-word text-white/25 inline-block mr-1.5';
-        return `<span class="${cls}" style="transition:color 0.4s, opacity 0.4s">${word}</span>`;
+        return `<span class="${cls}" style="transition:color 0.4s,opacity 0.4s">${word}</span>`;
       }).join('');
 
       const words = para.querySelectorAll('.text-reveal-word');
@@ -1304,18 +1327,13 @@ document.addEventListener('DOMContentLoaded', () => {
           duration: 0.6,
           stagger: { each: 0.045, from: 'start' },
           ease: 'power2.out',
-          scrollTrigger: {
-            trigger: para,
-            start: 'top 80%',
-            end: 'bottom 40%',
-            scrub: 0.8,
-          }
+          scrollTrigger: { trigger: para, start: 'top 80%', end: 'bottom 40%', scrub: 0.8 }
         }
       );
     });
 
-    // Flush pin positions after a short delay (ensures fonts/images are laid out)
-    gsap.delayedCall(0.3, () => ScrollTrigger.refresh());
+    // Flush after layout settles (images/fonts loaded)
+    gsap.delayedCall(0.4, () => ScrollTrigger.refresh());
   }
 
   // Before/After Slider Interaction
